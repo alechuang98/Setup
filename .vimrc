@@ -34,13 +34,15 @@ syntax enable
 colorscheme monokai
 filetype plugin indent on
 
-" map <silent> <esc> :noh <CR>
 " tnoremap <esc> <C-\><C-n>
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <leader>bd :Bclose<cr>
+
+" remove trailing space in file when save
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " backup off
 set nobackup
