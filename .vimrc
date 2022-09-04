@@ -33,6 +33,7 @@ set linebreak
 syntax enable
 colorscheme monokai
 filetype plugin indent on
+set clipboard=unnamed
 
 " tnoremap <esc> <C-\><C-n>
 map <C-j> <C-W>j
@@ -42,7 +43,7 @@ map <C-l> <C-W>l
 map <leader>bd :Bclose<cr>
 
 " remove trailing space in file when save
-autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " backup off
 set nobackup
@@ -79,5 +80,8 @@ let g:airline#extensions#ale#enabled=1
 let g:ale_linters_explicit=1
 let g:ale_linters={
 \	'c': ['cc'],
+\   'cpp': ['cc'],
+\   'python': ['flake8', 'mypy', 'pylint', 'pyright'],
 \}
-let g:ale_c_cc_options='-std=c11 -Wno-implicit-function-declaration'
+let g:ale_c_cc_options='-std=c99 -D_XOPEN_SOURCE=700 -Wno-implicit-function-declaration'
+let g:ale_c_cpp_options='-std=c++17 -Wall'
